@@ -10,6 +10,8 @@ import { AnimatedTitle } from "@/components/common/AnimatedTitle";
 import { BearIcon } from "@/components/common/BearIcon";
 import { CharacterHeader } from "@/components/common/CharacterHeader";
 import { MessageButton } from "@/components/common/MessageButton";
+import { usePerformanceOptimization } from "@/hooks/usePerformanceOptimization";
+import { useScrollEnhancement } from "@/hooks/useScrollEnhancement";
 import { componentStyles } from "@/styles/components";
 import { themes } from "@/styles/themes";
 import { tokens } from "@/styles/tokens";
@@ -28,6 +30,8 @@ export interface HomeViewProps {
 
 export function HomeView({ messages, onNavigate }: HomeViewProps) {
   const containerProps = componentStyles.messageCard.container;
+  const { gpuAcceleration } = usePerformanceOptimization();
+  useScrollEnhancement();
   return (
     <Box {...componentStyles.page.container} {...themes.home.background}>
       <Container {...componentStyles.page.content}>
@@ -60,13 +64,14 @@ export function HomeView({ messages, onNavigate }: HomeViewProps) {
           >
             <VStack
               gap={{
-                base: tokens.spacing.lg,
-                md: tokens.spacing.xl,
+                base: tokens.spacing.xl,
+                md: tokens.spacing["2xl"],
               }}
             >
               {/* グラスモーフィズムメッセージカード */}
               <MotionBox
                 {...containerProps}
+                style={gpuAcceleration}
                 whileHover={{
                   y: -2,
                   scale: 1.01,
@@ -136,7 +141,11 @@ export function HomeView({ messages, onNavigate }: HomeViewProps) {
               </MotionBox>
 
               {/* 平等な横並びアクションエリア */}
-              <Box w="100%" pt={{ base: tokens.spacing.xl, md: tokens.spacing["2xl"] }}>
+              <Box 
+                w="100%" 
+                pt={{ base: tokens.spacing["2xl"], md: tokens.spacing["3xl"] }}
+                pb={{ base: tokens.spacing.md, md: tokens.spacing.lg }}
+              >
                 <HStack
                   gap={{
                     base: tokens.spacing.lg,

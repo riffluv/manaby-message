@@ -27,6 +27,19 @@ export const buttonStyles = {
           boxShadow: `0 10px 22px ${tokens.colors.primary[500]}22, inset 0 1px 0 rgba(255,255,255,0.65)`,
           transform: "scale(1.06)",
         },
+        _focus: {
+          outline: "none",
+          boxShadow: tokens.focus.ring.shadow,
+          bg: tokens.focus.background.light,
+          transform: "scale(1.02)",
+          transition: `all ${tokens.animations.durations.fast} ${tokens.animations.easings.easeOut}`,
+        },
+        _focusVisible: {
+          outline: `${tokens.focus.ring.width} ${tokens.focus.ring.style} ${tokens.focus.ring.color}`,
+          outlineOffset: tokens.focus.ring.offset,
+          boxShadow: tokens.focus.ring.shadow,
+          bg: tokens.focus.background.medium,
+        },
         "& svg": {
           color: tokens.colors.primary[600],
           transform: "scale(1.08)",
@@ -38,9 +51,27 @@ export const buttonStyles = {
           fontWeight: tokens.typography.fontWeights.bold,
         },
       },
-      _active: {
-        transform: "translateY(0px) scale(0.99)",
+      _focus: {
+        outline: "none",
+        boxShadow: tokens.focus.ring.shadow,
+        bg: tokens.focus.background.light,
+        transform: "scale(1.02)",
+        transition: `all ${tokens.animations.durations.fast} ${tokens.animations.easings.easeOut}`,
       },
+      _focusVisible: {
+        outline: `${tokens.focus.ring.width} ${tokens.focus.ring.style} ${tokens.focus.ring.color}`,
+        outlineOffset: tokens.focus.ring.offset,
+        boxShadow: tokens.focus.ring.shadow,
+        bg: tokens.focus.background.medium,
+      },
+      _active: {
+        transform: "scale(0.95)",
+        transition: `transform ${tokens.animations.durations.instant} ${tokens.animations.easings.easeOut}`,
+        bg: tokens.focus.background.medium,
+      },
+      // モバイル最適化
+      touchAction: "manipulation",
+      WebkitTapHighlightColor: "transparent",
       "@media (hover: none)": {
         _hover: {
           transform: "none",

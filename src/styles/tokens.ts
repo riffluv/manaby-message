@@ -121,12 +121,16 @@ export const tokens = {
   // フォーカス状態の強化
   focus: {
     ring: {
+      color: "#FB923C", // primary[400] の固定値を使用
       width: "3px",
-      color: "#f97316",
-      offset: "2px",
+      offset: "3px",
       style: "solid",
+      shadow: "0 0 0 3px rgba(251, 146, 60, 0.3)",
     },
-    background: "rgba(249, 115, 22, 0.1)",
+    background: {
+      light: "rgba(251, 146, 60, 0.1)",
+      medium: "rgba(251, 146, 60, 0.15)",
+    },
   },
 
   // ボーダーラディウス

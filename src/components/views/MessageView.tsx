@@ -9,6 +9,8 @@
 import { BearIcon } from "@/components/common/BearIcon";
 import { CharacterHeader } from "@/components/common/CharacterHeader";
 import { TypewriterTitle } from "@/components/common/TypewriterTitle";
+import { usePerformanceOptimization } from "@/hooks/usePerformanceOptimization";
+import { useScrollEnhancement } from "@/hooks/useScrollEnhancement";
 import { componentStyles } from "@/styles/components";
 import { themes } from "@/styles/themes";
 import { tokens } from "@/styles/tokens";
@@ -29,6 +31,8 @@ export interface MessageViewProps {
 
 export function MessageView({ person, onBack }: MessageViewProps) {
   const theme = themes[person.themeKey];
+  const { gpuAcceleration } = usePerformanceOptimization();
+  useScrollEnhancement();
 
   return (
     <Box {...componentStyles.page.container} {...theme.background}>
@@ -59,6 +63,7 @@ export function MessageView({ person, onBack }: MessageViewProps) {
               <MotionBox
                 {...componentStyles.messageCard.container}
                 position="relative"
+                style={gpuAcceleration}
                 whileHover={{
                   y: -2,
                   scale: 1.01,
